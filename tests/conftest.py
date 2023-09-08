@@ -9,7 +9,7 @@ def valid_user_id() -> int:
 def invalid_user_id() -> int:
     return 1
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def profile_infos():
     val =  {
         0:{
@@ -19,7 +19,7 @@ def profile_infos():
     }
     return val
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def users_content():
     val = {
         0: {

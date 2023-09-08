@@ -1,6 +1,11 @@
 # from __future__ import annotations
+import os
 import sys
-sys.path.append('D:\Courses\Soft_project_2')
+
+current_path = os.getcwd()
+current_path = "\\".join(current_path.split('\\')[:-1])
+
+sys.path.append(current_path)
 from fastapi import FastAPI
 from app.routes.user import create_user_router
 from app.exception_handler import add_exception_handlers

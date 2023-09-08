@@ -3,11 +3,11 @@ import time
 
 
 count = 0
-limit = 500
+limit = 50000
 start_time = time.time()
 reset_interval = 10
 
-def rate_limit(response: Response) -> Response:
+def rate_limit(response: Response) -> None:
 
     global count
     global start_time
@@ -23,4 +23,4 @@ def rate_limit(response: Response) -> Response:
     count += 1
     response.headers['X-app-rate-limit'] = f"{count}:{limit}"
 
-    return Response
+    return None
