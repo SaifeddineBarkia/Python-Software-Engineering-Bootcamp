@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(
     format="%(levelname)-6s %(name)-6s %(asctime)s.%(msecs)03d %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
-    filename='logs.txt',
+    filename='./app/logs.txt',
     )
 logger.setLevel(logging.DEBUG)
 
