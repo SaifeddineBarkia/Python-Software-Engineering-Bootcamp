@@ -10,7 +10,12 @@ services:
     entrypoint: ["uvicorn","app.main:appi","--host","0.0.0.0","--port","8080","--reload"]
     volumes:
       - .:/usr/src/workspace
+      - ./models:/usr/src/workspace/models
 
+    environment:
+      - db_host = postgresql://postgres:postgres@localhost:5432/postgres
+    depends_on:
+      - postgresdb #The postgres db muist run first
   app-test:
     build:
       context: .
@@ -20,19 +25,15 @@ services:
     volumes:
       - .:/usr/src/workspace
 
-# version: "3"
-# services:
-#   app:
-#     build: ./
-#     ports:
-#       - 8080:8080
-#     entrypoint: ["uvicorn","app.main:appi","--host","0.0.0.0","--port","8080","--reload"]
-#     # entrypoint: pwd
-#     volumes:
-#       - ./:/usr/src/workspace
+  postgresdb:
+    image: postgres:14.1-alpine
+    ports:
+      - "5432:5432"
+    env_file:
+      - env-local
+    volumes:
+      - pgdb:/var/lib/postgresql/data
 
-#   app-test:
-#     build: .
-#     volumes:
-#       - ./:/usr/src/workspace
 
+volumes:
+  pgdb:

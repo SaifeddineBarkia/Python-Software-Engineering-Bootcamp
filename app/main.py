@@ -9,6 +9,7 @@ sys.path.append(current_path)
 from fastapi import FastAPI
 from app.routes.user import create_user_router
 from app.exception_handler import add_exception_handlers
+from models.base import recreate_postgres_tables
 
 def create_application() -> FastAPI:
     profile_infos, users_content = create_profile_infos_and_users_content()
@@ -37,4 +38,6 @@ def create_profile_infos_and_users_content():
 
     return profile_infos, users_content
 
+
+recreate_postgres_tables()
 appi = create_application()

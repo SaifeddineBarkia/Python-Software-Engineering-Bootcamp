@@ -5,6 +5,8 @@ ENV PYTHONUSERBASE ${PYROOT}
 ENV PATH=${PATH}:${PYROOT}/bin
 
 COPY requirements.txt ./
+RUN  PIP_USER=1 apk add --no-cache gcc python3-dev musl-dev linux-headers
+RUN PIP_USER=1 pip install --upgrade pip
 RUN PIP_USER=1 pip install -r requirements.txt
 
 # RUN if [ "$ENVIRONMENT" = "test" ] ; then PIP_USER=1 pipenv install --system --deploy --ignore-pipfile --dev ; \
